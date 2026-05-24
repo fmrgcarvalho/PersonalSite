@@ -23,39 +23,6 @@ fabio-portfolio/
 └── README.md
 ```
 
-## 🚀 Deploy — GitHub Pages
-
-### First time setup
-
-```bash
-# 1. Clone or init the repo
-git init
-git remote add origin https://github.com/fmrgcarvalho/<repo-name>.git
-
-# 2. Add all files
-git add .
-git commit -m "feat: initial portfolio launch"
-git push -u origin main
-```
-
-### Enable GitHub Pages
-
-1. Go to your repo on GitHub
-2. **Settings** → **Pages**
-3. Under **Source**, select `main` branch and `/ (root)`
-4. Click **Save**
-5. Your site will be live at `https://fmrgcarvalho.github.io/<repo-name>/`
-
-### Update the site
-
-```bash
-git add .
-git commit -m "update: <describe your change>"
-git push
-```
-
-GitHub Pages auto-deploys on every push to `main`.
-
 ## ✨ Features
 
 - Dark mode premium design
