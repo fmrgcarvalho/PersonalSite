@@ -36,12 +36,13 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // Counter animation for hero stats
-function animateCount(el, target, suffix) {
+function animateCount(el, target, prefix, suffix) {
   let current = 0;
   const step = target / 40;
   const timer = setInterval(() => {
     current = Math.min(current + step, target);
-    el.textContent = Math.round(current) + suffix;
+    const val = Math.round(current);
+    el.textContent = prefix + (val >= 1000 ? val.toLocaleString('en') : val) + suffix;
     if (current >= target) clearInterval(timer);
   }, 30);
 }
@@ -49,9 +50,12 @@ const statNums = document.querySelectorAll('.stat-item-num');
 const statsObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      const txt = e.target.textContent;
-      const match = txt.match(/(\d+)(\+?)/);
-      if (match) animateCount(e.target, parseInt(match[1]), match[2]);
+      const txt = e.target.textContent.trim();
+      const match = txt.match(/^([^0-9]*)([\d,]+)([^0-9]*)$/);
+      if (match) {
+        const target = parseInt(match[2].replace(/,/g, ''));
+        animateCount(e.target, target, match[1], match[3]);
+      }
       statsObs.unobserve(e.target);
     }
   });
